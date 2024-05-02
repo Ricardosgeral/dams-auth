@@ -13,8 +13,8 @@ const font = Poppins({
 
 export default function Home() {
   return (
-    <main className="flex h-screen flex-col items-center justify-center space-y-6 text-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
-      <LogoApp height={600} width={600} negative />
+    <main className="flex h-screen flex-col items-center justify-center px-8 space-y-6 text-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
+      <LogoApp width={600} negative />
 
       {/* <h1
         className={cn(

@@ -2,11 +2,10 @@ import Image from "next/image";
 
 interface LogAppProps {
   width: number;
-  height: number;
   negative?: boolean;
 }
 
-export default function LogoApp({ width, height, negative }: LogAppProps) {
+export default function LogoApp({ width, negative }: LogAppProps) {
   return (
     <Image
       src={
@@ -16,7 +15,9 @@ export default function LogoApp({ width, height, negative }: LogAppProps) {
       }
       alt="Barragista Logo"
       width={width}
-      height={height}
+      height={0}
+      style={{ width: "auto", height: "auto" }}
+      priority
     />
   );
 }

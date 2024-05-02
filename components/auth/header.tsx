@@ -15,7 +15,7 @@ export function Header({ label }: HeaderProps) {
   return (
     <div className="w-full flex flex-col gap-y-4 items-center justify-center">
       {/* <h1 className={cn("text-3xl font-semibold", font.className)}></h1> */}
-      <LogoApp height={120} width={300} />
+      <LogoApp width={300} />
       <p className="text-muted-foreground text-sm">{label}</p>
     </div>
   );

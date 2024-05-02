@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { getUserByEmail } from "@/data/data";
+import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification-token";
 
 export const newVerification = async (token: string) => {
@@ -23,7 +23,7 @@ export const newVerification = async (token: string) => {
     return { error: "User does not exist!" };
   }
 
-  //mark the emailverified field in the user table
+  //mark the emailVerified field in the user table
   await db.user.update({
     where: { id: existingUser.id },
     data: {
