@@ -1,7 +1,9 @@
 import { auth, signOut } from "@/auth";
-import { Session } from "inspector";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
-export default async function Settings() {
+export default async function SettingsPage() {
+  const user = useCurrentUser();
+
   const session = await auth();
   console.log(session);
 
