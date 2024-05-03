@@ -7,7 +7,10 @@ import { db } from "./lib/db";
 import { getUserById } from "@/data/user";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 
-export type ExtendedUser = DefaultSession["user"] & { role: UserRole };
+export type ExtendedUser = DefaultSession["user"] & {
+  role: UserRole;
+  isTwoFactorEnabled: Boolean;
+};
 
 declare module "next-auth" {
   interface Session {
@@ -65,9 +68,12 @@ export const {
     async session({ session, user, token }) {
       if (token.sub && session.user) {
         session.user.id = token.sub; //defined the field id
-
+      }
+      if (token.role && session.user) {
         session.user.role = token.role as UserRole;
-        console.log(session);
+      }
+      if (session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as Boolean;
       }
       return session;
     },
@@ -78,8 +84,7 @@ export const {
 
       if (!existingUser) return token; //not logged in
       token.role = existingUser.role;
-
-      //console.log(token)
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
     },

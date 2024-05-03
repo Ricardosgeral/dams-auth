@@ -15,9 +15,7 @@ export default function SettingsPage() {
       {
         //JSON.stringify(user)
       }
-      <button onClick={onClick} type="submit">
-        Sign out
-      </button>
+      <button onClick={onClick}>Settings</button>
     </div>
   );
 }

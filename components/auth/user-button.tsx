@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Avatar, AvatarImage, AvatarFallback } from "@/components//ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { LogoutButton } from "@/components/auth/logout-button";
 
@@ -26,12 +26,10 @@ export function UserButton() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-5" align="end">
+      <DropdownMenuContent className="w-10" align="end">
         <DropdownMenuItem>
-          <LogoutButton>
-            <ExitIcon className="h-4 w-4 mr-1" />
-            Logout
-          </LogoutButton>
+          <ExitIcon className="h-4 w-4 mr-1" />
+          <LogoutButton>Logout</LogoutButton>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
