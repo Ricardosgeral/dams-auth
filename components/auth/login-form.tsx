@@ -28,6 +28,7 @@ import Link from "next/link";
 
 export function LoginForm() {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider!"
@@ -50,7 +51,7 @@ export function LoginForm() {
 
     startTransition(() => {
       //starts here the transition and isPending is true, once the transition ends the isPending sets false
-      login(values) // call the action of login() to return information from server
+      login(values, callbackUrl) // call the action of login() to return information from server
         .then((data) => {
           if (data?.error) {
             form.reset(); // improve user experience
