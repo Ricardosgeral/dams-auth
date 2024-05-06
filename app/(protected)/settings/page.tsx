@@ -3,10 +3,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { settings } from "@/actions/settings";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 
 import {
   Select,
@@ -18,7 +23,7 @@ import {
 
 import { Switch } from "@/components/ui/switch";
 
-import { SettingsSchema } from "@/schemas";
+import { SettingsSchema, DeleteAccountSchema } from "@/schemas";
 import {
   Form,
   FormField,
@@ -34,6 +39,8 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { FormSuccess } from "@/components/form-success";
 import { FormError } from "@/components/form-error";
 import { UserRole } from "@prisma/client";
+import { deleteAccount } from "@/actions/delete-account";
+import { Badge } from "@/components/ui/badge";
 
 export default function SettingsPage() {
   const [error, setError] = useState("");
@@ -42,7 +49,11 @@ export default function SettingsPage() {
   const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
-  //console.log(user?.isOAuth);
+
+  useEffect(() => {
+    update();
+  }, []);
+
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
@@ -55,9 +66,34 @@ export default function SettingsPage() {
     },
   });
 
+  const formDelete = useForm<z.infer<typeof DeleteAccountSchema>>({
+    resolver: zodResolver(DeleteAccountSchema),
+    defaultValues: {
+      delete: undefined,
+    },
+  });
+
   const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
     startTransition(() => {
       settings(values)
+        .then((data) => {
+          if (data.error) {
+            setError(data.error);
+          }
+          if (data.success) {
+            update();
+            setSuccess(data.success);
+          }
+        })
+        .catch(() => setError("Something went wrong"));
+    });
+  };
+
+  const onSubmitDeleteAccount = (
+    values: z.infer<typeof DeleteAccountSchema>
+  ) => {
+    startTransition(() => {
+      deleteAccount(values)
         .then((data) => {
           if (data.error) {
             setError(data.error);
@@ -216,7 +252,49 @@ export default function SettingsPage() {
           </form>
         </Form>
       </CardContent>
+      <div className="space-y-6">
+        <hr className="w-80 mx-auto" />
+      </div>
+      <CardFooter>
+        <Form {...formDelete}>
+          <form
+            className="space-y-6"
+            onSubmit={formDelete.handleSubmit(onSubmitDeleteAccount)}
+          >
+            <div className="space-y-4">
+              <FormField
+                control={formDelete.control}
+                name="delete"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      <div className="space-y-4">
+                        <h1 className="font-bold text-red-500">
+                          Delete Account
+                        </h1>
+                        <p>
+                          😟This action cannot be undo. To delete your account,
+                          write
+                        </p>
+                        <Badge variant="outline">DELETE</Badge>
+                      </div>
+                    </FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="" disabled={isPending} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            <Button variant="destructive" type="submit" disabled={isPending}>
+              Delete
+            </Button>
+          </form>
+        </Form>
+      </CardFooter>
     </Card>
   );
 }
-//JSON.stringify(user)

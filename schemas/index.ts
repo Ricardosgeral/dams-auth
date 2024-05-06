@@ -3,14 +3,18 @@ import { UserRole } from "@prisma/client";
 
 import { z } from "zod";
 
+export const DeleteAccountSchema = z.object({
+  delete: z.string(),
+});
+
 export const SettingsSchema = z
   .object({
-    name: z.optional(z.string().min(1, { message: "Required" })),
-    isTwoFactorEnabled: z.optional(z.boolean()),
+    name: z.string().optional(),
+    isTwoFactorEnabled: z.boolean().optional(),
     role: z.enum([UserRole.ADMIN, UserRole.USER]),
     email: z.optional(z.string().email()),
-    password: z.optional(z.string().min(6).max(30)),
-    newPassword: z.optional(z.string().min(6).max(30)),
+    password: z.string().min(6).max(30).optional(),
+    newPassword: z.string().min(6).max(30).optional(),
   })
   .refine(
     (data) => {

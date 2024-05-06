@@ -6,8 +6,11 @@ import * as z from "zod";
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { useRouter } from "next/router";
+
 import { LoginSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
+
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
 import {
@@ -85,7 +88,6 @@ export const login = async (
       return { twoFactor: true };
     }
   }
-
   try {
     await signIn("credentials", {
       email,
