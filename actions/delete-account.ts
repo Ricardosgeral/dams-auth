@@ -13,22 +13,22 @@ export const deleteAccount = async (
   const user = await currentUser();
 
   if (!user) {
-    return { error: "unautorized" };
+    return { errorDelete: "unautorized" };
   }
 
   const dbUser = await getUserById(user.id);
 
   if (!dbUser) {
-    return { error: "Unautorized" };
+    return { errorDelete: "Unautorized" };
   }
 
   if (values.delete !== "DELETE") {
-    return { success: "Write 'DELETE' to remove account!" };
+    return { errorDelete: "Write 'DELETE' to remove account!" };
   }
 
   await db.user.delete({ where: { id: dbUser.id } });
 
   await signOut({ redirectTo: "/", redirect: true });
 
-  return { success: "Account deleted 😒" };
+  return { successDelete: "Account deleted 😒" };
 };

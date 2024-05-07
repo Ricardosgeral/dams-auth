@@ -6,12 +6,7 @@ import { useSession } from "next-auth/react";
 import { useState, useTransition, useEffect } from "react";
 import { settings } from "@/actions/settings";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
 import {
   Select,
@@ -45,24 +40,24 @@ import { Badge } from "@/components/ui/badge";
 export default function SettingsPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const [errorDelete, setErrorDelete] = useState("");
+  const [successDelete, setSuccessDelete] = useState("");
+
   const { update } = useSession();
   const [isPending, startTransition] = useTransition();
 
   const user = useCurrentUser();
 
-  useEffect(() => {
-    update();
-  }, []);
-
   const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues: {
-      name: user?.name || undefined,
-      email: user?.email || undefined,
-      password: undefined,
-      newPassword: undefined,
-      role: user?.role || undefined,
-      isTwoFactorEnabled: user?.isTwoFactorEnabled || undefined,
+      name: user?.name || "",
+      email: user?.email || "",
+      password: "",
+      newPassword: "",
+      role: user?.role || "USER",
+      isTwoFactorEnabled: user?.isTwoFactorEnabled || false,
     },
   });
 
@@ -95,14 +90,14 @@ export default function SettingsPage() {
     startTransition(() => {
       deleteAccount(values)
         .then((data) => {
-          if (data.error) {
-            setError(data.error);
+          if (data.errorDelete) {
+            setErrorDelete(data.errorDelete);
           }
-          if (data.success) {
-            setSuccess(data.success);
+          if (data.successDelete) {
+            setSuccessDelete(data.successDelete);
           }
         })
-        .catch(() => setError("Something went wrong"));
+        .catch(() => setErrorDelete("Something went wrong"));
     });
   };
 
@@ -177,7 +172,7 @@ export default function SettingsPage() {
                     name="newPassword"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>New password</FormLabel>
+                        <FormLabel>New password | Confirm password </FormLabel>
                         <FormControl>
                           <Input
                             {...field}
@@ -251,11 +246,10 @@ export default function SettingsPage() {
             </Button>
           </form>
         </Form>
-      </CardContent>
-      <div className="space-y-6">
-        <hr className="w-80 mx-auto" />
-      </div>
-      <CardFooter>
+        <div className="flex flex-col space-y-1.5 p-6">
+          <hr className="w-80 mx-auto" />
+        </div>
+
         <Form {...formDelete}>
           <form
             className="space-y-6"
@@ -273,8 +267,8 @@ export default function SettingsPage() {
                           Delete Account
                         </h1>
                         <p>
-                          😟This action cannot be undo. To delete your account,
-                          write
+                          😟This action cannot be undone. To delete your
+                          account, write
                         </p>
                         <Badge variant="outline">DELETE</Badge>
                       </div>
@@ -287,14 +281,14 @@ export default function SettingsPage() {
                 )}
               />
             </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
+            <FormError message={errorDelete} />
+            <FormSuccess message={successDelete} />
             <Button variant="destructive" type="submit" disabled={isPending}>
               Delete
             </Button>
           </form>
         </Form>
-      </CardFooter>
+      </CardContent>
     </Card>
   );
 }

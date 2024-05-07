@@ -9,12 +9,12 @@ export const DeleteAccountSchema = z.object({
 
 export const SettingsSchema = z
   .object({
-    name: z.string().optional(),
+    name: z.string().min(2).optional(),
     isTwoFactorEnabled: z.boolean().optional(),
-    role: z.enum([UserRole.ADMIN, UserRole.USER]),
-    email: z.optional(z.string().email()),
-    password: z.string().min(6).max(30).optional(),
-    newPassword: z.string().min(6).max(30).optional(),
+    role: z.enum([UserRole.ADMIN, UserRole.USER]).optional(),
+    email: z.string().email().optional(),
+    password: z.string().min(6).max(18).optional(),
+    newPassword: z.string().min(6).max(18).optional(),
   })
   .refine(
     (data) => {
@@ -25,7 +25,7 @@ export const SettingsSchema = z
       return true;
     },
     {
-      message: "New Password is required!",
+      message: "New (or Confirmation) Password is required!",
       path: ["newPassword"],
     }
   )
