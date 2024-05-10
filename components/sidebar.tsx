@@ -5,17 +5,12 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Footer from "@/components/footer";
-import { ExtendedUser } from "@/auth";
+import { UserAvatar } from "./auth/user-avatar";
 
-declare interface SiderbarProps {
-  user: ExtendedUser;
-}
-
-export const Sidebar = ({ user }: SiderbarProps) => {
+export const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <section className="sticky left-0 top-0 flex flex-col h-screen w-fit  justify-between border-r border-gray-200 bg-white pt-8 text-black p-4 max-md:hidden  xl:w-[300px]">
+    <section className="sticky left-0 top-0 flex flex-col h-screen w-fit  justify-between border-r border-gray-200 bg-white pt-8 text-black p-4 max-md:hidden  xl:w-[200px]">
       <nav className="flex flex-col gap-4">
         <Link
           href="/home"
@@ -62,7 +57,7 @@ export const Sidebar = ({ user }: SiderbarProps) => {
         })}
       </nav>
 
-      <Footer user={user} />
+      <UserAvatar isPhotoLeft={true} />
     </section>
   );
 };

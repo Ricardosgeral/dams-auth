@@ -16,7 +16,7 @@ export default async function PagesLayout({ children }: PagesLayoutProps) {
 
   return (
     <main className="flex h-screen w-full font-inter">
-      <Sidebar user={user} />
+      <Sidebar />
 
       <div className="flex flex-col size-full p-4">
         <div className="flex h-16 items-center justify-between p-2 md:hidden">

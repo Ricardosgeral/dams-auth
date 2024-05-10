@@ -23,7 +23,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
 
   return (
-    <section className="w-full max-w-[300px]">
+    <section className="w-full max-w-[150px]">
       <Sheet>
         <SheetTrigger>
           <HamburgerMenuIcon
@@ -58,7 +58,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                         href={item.route}
                         key={item.label}
                         className={cn(
-                          "flex gap-3 items-center p-4 rounded-lg w-full max-w-60 text-black hover:opacity-50",
+                          "flex gap-3 items-center p-4 rounded-lg w-full text-black hover:opacity-50",
                           {
                             "bg-black text-white": isActive,
                           }
@@ -82,7 +82,6 @@ const MobileNav = ({ user }: MobileNavProps) => {
                     </SheetClose>
                   );
                 })}
-                USER
               </nav>
             </SheetClose>
 

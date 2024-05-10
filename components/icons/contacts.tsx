@@ -1,19 +1,17 @@
-// icon:e-bike-line | Remix Icon https://remixicon.com/ | Remix Design
+// icon:megaphone | Bootstrap https://icons.getbootstrap.com/ | Bootstrap
 import * as React from "react";
 
-function IconEBikeLine(props: React.SVGProps<SVGSVGElement>) {
+function IconMegaphone(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 24 24"
       fill="currentColor"
+      viewBox="0 0 16 16"
       height="1em"
       width="1em"
       {...props}
     >
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M15.5 6.937A6.997 6.997 0 0119 13v8h-4.17a3.001 3.001 0 01-5.66 0H5v-8a6.997 6.997 0 013.5-6.063A3.974 3.974 0 018.125 6H5V4h3.126a4.002 4.002 0 017.748 0H19v2h-3.126a4.02 4.02 0 01-.373.937zm-1.453 1.5A3.976 3.976 0 0112 9a3.981 3.981 0 01-2.047-.563A5.001 5.001 0 007 13v6h2v-4a3 3 0 016 0v4h2v-6a5.001 5.001 0 00-2.953-4.563zM12 14a1 1 0 00-1 1v5a1 1 0 002 0v-5a1 1 0 00-1-1zm0-7a2 2 0 100-4 2 2 0 000 4z" />
+      <path d="M13 2.5a1.5 1.5 0 013 0v11a1.5 1.5 0 01-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 015.51 15.1h-.548a1 1 0 01-.916-.599l-1.85-3.49a68.14 68.14 0 00-.202-.003A2.014 2.014 0 010 9V7a2.02 2.02 0 011.992-2.013 74.663 74.663 0 002.483-.075c3.043-.154 6.148-.849 8.525-2.199V2.5zm1 0v11a.5.5 0 001 0v-11a.5.5 0 00-1 0zm-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233c.18.01.359.022.537.036 2.568.189 5.093.744 7.463 1.993V3.85zm-9 6.215v-4.13a95.09 95.09 0 01-1.992.052A1.02 1.02 0 001 7v2c0 .55.448 1.002 1.006 1.009A60.49 60.49 0 014 10.065zm-.657.975l1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68.019 68.019 0 00-1.722-.082z" />
     </svg>
   );
 }
-
-export default IconEBikeLine;
+export default IconMegaphone;
