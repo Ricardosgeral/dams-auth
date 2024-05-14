@@ -1,22 +1,17 @@
 import Image from "next/image";
 
 interface LogAppProps {
-  width: number;
   negative?: boolean;
 }
 
-export default function LogoApp({ width, negative }: LogAppProps) {
+export default function LogoApp({ negative }: LogAppProps) {
   return (
     <Image
-      src={
-        negative
-          ? "/logos/logo-no-background.svg"
-          : "/logos/logo-black-_2lines.svg"
-      }
+      src={negative ? "/logos/logos_Page 1.svg" : "/logos/logos_Page 3.svg"}
       alt="Barragista Logo"
-      width={width}
+      width={0}
       height={0}
-      style={{ width: "auto", height: "auto" }}
+      className="w-3/4  min-w-[200px] py-1 sm:w-1/3 sm:py-2"
       priority
     />
   );

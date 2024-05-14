@@ -6,7 +6,7 @@ export default function AuthLayout({
   return (
     <div
       className="h-screen flex items-center justify-center
-    bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800"
+    bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-yellow-400 to-yellow-500 border-t"
     >
       {children}
     </div>
