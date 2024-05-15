@@ -11,7 +11,7 @@ export default function LogoApp({ negative }: LogAppProps) {
       alt="Barragista Logo"
       width={0}
       height={0}
-      className="w-3/4  min-w-[200px] py-1 sm:w-1/3 sm:py-2"
+      className="w-3/4  min-w-[250px] py-1 sm:w-1/3 sm:py-2"
       priority
     />
   );

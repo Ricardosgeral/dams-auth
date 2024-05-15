@@ -115,7 +115,12 @@ export function RegisterForm() {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button
+            variant="primary"
+            disabled={isPending}
+            type="submit"
+            className="w-full rounded-full"
+          >
             Create account
           </Button>
         </form>

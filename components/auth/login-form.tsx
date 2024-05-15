@@ -154,7 +154,12 @@ export function LoginForm() {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
+          <Button
+            variant="primary"
+            disabled={isPending}
+            type="submit"
+            className="w-full rounded-full"
+          >
             {!showTwoFactor ? "Login" : "Confirm"}
           </Button>
           <FormError message={urlError} />

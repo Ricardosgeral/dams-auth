@@ -10573,7 +10573,7 @@
      inkscape:window-width="1569"
      inkscape:window-height="1032"
      inkscape:window-x="1922"
-     inkscape:window-y="129"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer-MC0">
     <inkscape:page
@@ -10584,7 +10584,10 @@
        width="230"
        height="260"
        margin="0"
-       bleed="0" />
+       bleed="0"
+       inkscape:export-filename="dams_vertical.jpg"
+       inkscape:export-xdpi="600"
+       inkscape:export-ydpi="600" />
   </sodipodi:namedview>
   <g
      id="layer-MC0"
