@@ -102,7 +102,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <Card className="w-[600px]">
+    <Card>
       <CardHeader>
         <p className="text-md font-semibold text-center"> ⚙️ Settings</p>
       </CardHeader>

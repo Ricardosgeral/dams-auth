@@ -1,63 +1,25 @@
 "use client";
 
-import { sidebarLinks } from "@/app/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserAvatar } from "./auth/user-avatar";
+import NavLinks from "./nav-links";
+import LogoApp from "./logo-app";
 
 export const Sidebar = () => {
-  const pathname = usePathname();
+  const currentYear = new Date().getFullYear();
+
   return (
-    <section className="sticky left-0 top-0 flex flex-col h-screen w-fit  justify-between border-r border-gray-200 bg-white pt-8 text-black p-4 max-md:hidden  xl:w-[200px]">
-      <nav className="flex flex-col gap-4">
-        <Link
-          href="/home"
-          className="mb-8 cursor-pointer flex items-center gap-2"
-        >
-          <Image
-            src="/logos/logo-rect-2lines.svg"
-            width={150}
-            height={150}
-            alt="Barragista logo"
-            className="max-xl:w-[70px] "
-          />
-        </Link>
+    <section className="sticky left-0 top-0 flex flex-col h-screen items-center justify-between py-4 max-md:hidden border-r border-gray-300 text-black">
+      <LogoApp square={true} />
+      <NavLinks />
 
-        {sidebarLinks.map((item) => {
-          const isActive =
-            pathname === item.route || pathname.startsWith(`${item.route}/`);
-
-          return (
-            <Link
-              href={item.route}
-              key={item.label}
-              className={cn(
-                "flex gap-3 items-center py-1 md:p-3 2xl:p-3 rounded-lg justify-center xl:justify-start hover:opacity-50",
-                { "bg-black text-white": isActive }
-              )}
-            >
-              <div className="relative size-6">
-                {
-                  <item.icon
-                    className={cn({
-                      "brightness-[3] invert-0": isActive,
-                    })}
-                    height={24}
-                    width={24}
-                  />
-                }
-              </div>
-              <p className={cn("sidebar-label", { "!text-white": isActive })}>
-                {item.label}
-              </p>
-            </Link>
-          );
-        })}
-      </nav>
-
-      <UserAvatar isPhotoLeft={true} />
+      {/* <UserAvatar isPhotoLeft={true} /> */}
+      <div className="text-xs text-gray-900 dark:text-gray-200 p-2">
+        © {currentYear} Ricardos
+      </div>
     </section>
   );
 };

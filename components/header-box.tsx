@@ -1,3 +1,5 @@
+import { UserAvatar } from "./auth/user-avatar";
+
 interface HeaderBoxProps {
   type?: "title" | "greeting";
   title: string;
@@ -12,16 +14,23 @@ const HeaderBox = ({
   user,
 }: HeaderBoxProps) => {
   return (
-    <div className="flex flex-col gap-1">
-      <h1 className="text-24 lg:text-32 font-semibold text-gray-900">
-        {title}
-        {type === "greeting" && (
-          <span className="text-24 lg:text-32 font-sans font-semibold text-sky-500">
-            &nbsp;{user}
-          </span>
-        )}
-      </h1>
-      <p className="text-18 lg:text-22 font-normal text-gray-600">{subtext}</p>
+    <div className="flex justify-between items-stretch">
+      <div className="flex flex-row md:flex-col gap-y-1 gap-x-3 items-baseline justify-between">
+        <h1 className="text-xl md:text-xl font-semibold text-slate-800">
+          {title}
+          {type === "greeting" && (
+            <span className="text-20 lg:text-32 font-sans font-semibold text-yellow-500">
+              &nbsp;{user}
+            </span>
+          )}
+        </h1>
+        <p className="text-sm md:text-md  text-slate-500 font-semibold">
+          {subtext}
+        </p>
+      </div>
+      <div className="hidden md:block">
+        <UserAvatar isPhotoLeft={false} />
+      </div>
     </div>
   );
 };

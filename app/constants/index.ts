@@ -4,11 +4,11 @@ import IconHome6Line from "@/components/icons/home";
 import IconBookshelf from "@/components/icons/regulaments";
 
 export const sidebarLinks = [
-  {
-    icon: IconHome6Line,
-    route: "/home",
-    label: "Home",
-  },
+  // {
+  //   icon: IconHome6Line,
+  //   route: "/home",
+  //   label: "Home",
+  // },
   {
     icon: ConcreteDam,
     route: "/dams",

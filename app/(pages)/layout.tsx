@@ -18,18 +18,18 @@ export default async function PagesLayout({ children }: PagesLayoutProps) {
     <main className="flex h-screen w-full font-inter">
       <Sidebar />
 
-      <div className="flex flex-col size-full p-4">
+      <div className="flex flex-col size-full p-2">
         <div className="flex h-16 items-center justify-between p-2 md:hidden">
-          <Link href="/home">
+          <Link href="/">
             <Image
-              src="/logos/logo-rect-2lines.svg"
-              width={55}
-              height={55}
+              src="/logos/logos_Page 3.svg"
+              width={200}
+              height={120}
               alt="logo"
             />
           </Link>
           <div>
-            <MobileNav user={user} />
+            <MobileNav />
           </div>
         </div>
         {children}

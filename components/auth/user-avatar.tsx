@@ -26,38 +26,29 @@ export function UserAvatar({ isPhotoLeft = false }: UserAvatarProps) {
     <div
       className={
         isPhotoLeft
-          ? "flex flex-row-reverse  items-center space-x-2"
-          : "flex items-center gap-x-2"
+          ? "flex flex-row-reverse gap-x-2 px-2 justify-end"
+          : "flex gap-x-3"
       }
     >
-      <div className="w-[120px] hidden sm:block overflow-hidden items-center">
+      <div className="flex items-center overflow-hidden">
         {user?.name && (
-          <div
-            className={
-              isPhotoLeft
-                ? "flex flex-row font-semibold items-baseline justify-start"
-                : "flex flex-row font-semibold items-baseline justify-end"
-            }
-          >
-            <p className="text-sm text-gray-700 text-left">
-              &nbsp;&nbsp;Hi,&nbsp;
-            </p>
-            <h1 className="truncate overflow-ellipsis text-md text-sky-500">
-              {user?.name.trim().split(/\s+/)[0]}
-            </h1>
-          </div>
+          <h1 className="truncate overflow-ellipsis text-sm text-slate-600">
+            {user?.name.trim().split(/\s+/)[0]}
+          </h1>
         )}
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div>
-            <Avatar>
+            <Avatar className="hover:ring-2 hover:ring-offset-2 hover:ring-yellow-500">
               <AvatarImage src={user?.image || undefined} />
-              <AvatarFallback className="bg-sky-500 text-white">
+              <AvatarFallback className="bg-yellow-500 text-white shadow-xl hover:bg-yellow-500/80">
                 {!user?.name ? (
                   <FaUser />
                 ) : (
-                  <p className="text-xl font-bold">{user?.name?.slice(0, 1)}</p>
+                  <p className="text-xl font-bold">
+                    {user?.name?.slice(0, 1).toUpperCase()}
+                  </p>
                 )}
               </AvatarFallback>
             </Avatar>

@@ -55,7 +55,7 @@ export default function Home() {
                 </p>
               </div>
               <Link href={"/dams"}>
-                <Button variant="default" size="sm" className="w-1/2">
+                <Button variant="default" size="sm" className="w-1/3 h-8">
                   Go
                 </Button>
               </Link>
@@ -81,7 +81,7 @@ export default function Home() {
                 </p>
               </div>
               <Link href={"/regulations"}>
-                <Button variant="default" size="sm" className="w-1/2">
+                <Button variant="default" size="sm" className="w-1/3 h-8">
                   Go
                 </Button>
               </Link>

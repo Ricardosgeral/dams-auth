@@ -7,16 +7,15 @@ export default async function Dams() {
 
   if (!user) redirect("/auth/login"); //middleware should avoid this but
   return (
-    <section className="no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll">
-      <div className="no-scrollbar flex w-full flex-1 flex-col gap-5 px-5 sm:px-8 py-5 lg:py-8 xl:max-h-screen xl:overflow-y-scroll">
-        <header className="flex flex-col justify-between gap-8">
+    <section className="no-scrollbar flex w-full flex-row max-xl:max-h-screen">
+      <div className="no-scrollbar flex w-full flex-1 flex-col md:py-5 md:px-8 py-4 px-2 xl:max-h-screen">
+        <header className="flex flex-col justify-between">
           <HeaderBox
             type="title"
             title="Dams in Portugal"
             subtext="Database of main dams"
           ></HeaderBox>
         </header>
-        <div></div>
       </div>
     </section>
   );

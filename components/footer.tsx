@@ -17,7 +17,7 @@ const Footer = ({ user, type = "desktop" }: FooterProps) => {
   };
 
   return (
-    <footer className="flex overflow-hidden cursor-pointer items-center justify-between py-2 space-x-2">
+    <footer className="flex overflow-hidden cursor-pointer items-center justify-between space-x-2">
       <div
         className={
           type === "mobile"
