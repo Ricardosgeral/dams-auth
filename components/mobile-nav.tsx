@@ -27,15 +27,14 @@ const MobileNav = () => {
         className="border-none bg-white flex flex-col justify-between pl-0 pr-1 w-1/4 max-w-[250px] min-w-[130px]"
       >
         <LogoApp square={true} />
-        <SheetClose asChild>
-          <div className="flex flex-col space-y-2 w-full">
-            {sidebarLinks.map((item) => {
-              const isActive =
-                pathname === item.route ||
-                pathname.startsWith(`${item.route}/`);
+        <div className="flex flex-col space-y-2 w-full">
+          {sidebarLinks.map((item) => {
+            const isActive =
+              pathname === item.route || pathname.startsWith(`${item.route}/`);
 
-              return (
-                <Link href={item.route} key={item.label}>
+            return (
+              <Link href={item.route} key={item.label}>
+                <SheetClose asChild key={item.route}>
                   <div
                     className={cn(
                       "flex font-semibold w-full items-center rounded-r-full p-2 justify-end space-x-2 xl:justify-end hover:text-yellow-500",
@@ -61,11 +60,11 @@ const MobileNav = () => {
                       }
                     </div>
                   </div>
-                </Link>
-              );
-            })}
-          </div>
-        </SheetClose>
+                </SheetClose>
+              </Link>
+            );
+          })}
+        </div>
         <div className="overflow-hidden py-2">
           <UserAvatar isPhotoLeft={true} />
         </div>
