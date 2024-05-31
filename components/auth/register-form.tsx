@@ -67,7 +67,7 @@ export function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="example"
+                      placeholder="name"
                     ></Input>
                   </FormControl>
                   <FormMessage />
@@ -85,7 +85,7 @@ export function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="example@example.com"
+                      placeholder="email"
                       type="email"
                     ></Input>
                   </FormControl>
@@ -104,7 +104,7 @@ export function RegisterForm() {
                     <Input
                       disabled={isPending}
                       {...field}
-                      placeholder="******"
+                      placeholder="password"
                       type="password"
                     ></Input>
                   </FormControl>

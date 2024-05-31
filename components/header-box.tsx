@@ -1,4 +1,5 @@
 import { UserAvatar } from "./auth/user-avatar";
+import SearchInput from "./search-input";
 
 interface HeaderBoxProps {
   type?: "title" | "greeting";
@@ -28,6 +29,7 @@ const HeaderBox = ({
           {subtext}
         </p>
       </div>
+      <SearchInput />
       <div className="hidden md:block">
         <UserAvatar isPhotoLeft={false} />
       </div>

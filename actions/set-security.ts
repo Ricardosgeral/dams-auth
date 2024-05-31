@@ -9,7 +9,7 @@ import { SettingsSchema } from "@/schemas";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
 
-export const settings = async (values: z.infer<typeof SettingsSchema>) => {
+export const setSecurity = async (values: z.infer<typeof SettingsSchema>) => {
   const user = await currentUser();
 
   if (!user) {
@@ -22,7 +22,6 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     return { error: "Unautorized" };
   }
 
-  console.log(user.isOAuth);
   if (user.isOAuth) {
     values.email = undefined;
     values.password = undefined;
@@ -59,9 +58,10 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     values.password = hashedPassword;
     values.newPassword = undefined;
   }
+
   await db.user.update({
     where: { id: dbUser.id },
     data: { ...values },
   });
-  return { success: "Settings updated" };
+  return { success: "Security settings updated" };
 };

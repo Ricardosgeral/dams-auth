@@ -1,4 +1,5 @@
 import HeaderBox from "@/components/header-box";
+import SearchInput from "@/components/search-input";
 import { currentUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
@@ -15,6 +16,7 @@ export default async function Dams() {
             title="Dams in Portugal"
             subtext="Database of main dams"
           ></HeaderBox>
+          <SearchInput />
         </header>
       </div>
     </section>

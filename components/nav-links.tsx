@@ -5,7 +5,7 @@ import { sidebarLinks } from "@/app/constants";
 
 export default function NavLinks() {
   const pathname = usePathname();
-  console.log(pathname);
+  //console.log(pathname);
 
   return (
     <div className="flex flex-col justify-center items-center space-y-2 pr-1">
